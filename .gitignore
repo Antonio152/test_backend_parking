@@ -1,0 +1,11 @@
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+#Modules
+node_modules
+
+# Builds
+build
