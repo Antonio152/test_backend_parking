@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { dataParking } from "../database/dataParking";
-import { ParkingEntry, NewParkingEntry } from "./parking.types";
+import { ParkingEntry, NewParkingEntry, ImagesParking } from "./parking.types";
 
 export const getAllParking = (
   _req: Request,
@@ -14,7 +14,7 @@ export const postParking = (
   req: Request<{}, {}, { body: string }>,
   res: Response<ParkingEntry>
 ): Promise<Response<ParkingEntry>> => {
-  const images = req.files;
+  const { image: images } = req.files as ImagesParking;
   const parking = JSON.parse(req.body.body) as NewParkingEntry;
   return new Promise((resolve, _) => {
     const id =

@@ -1,5 +1,5 @@
 import { Router } from "express";
-// import { check } from "express-validator";
+import { body } from "express-validator";
 import multer from "multer";
 import {
   getAllParking,
@@ -9,7 +9,8 @@ import {
   deleteParking,
 } from "../controller/parkingController";
 import { validarJWT } from "../middlewares/validate-jwt";
-// import { validatefields } from "../middlewares/validateFields";
+import { validatefields as validateFields } from "../middlewares/validateFields";
+import { validateImage, validateParking } from "../helper/validateParking";
 const router = Router();
 // Configure multer to save uploaded files in memory
 const upload = multer({ storage: multer.memoryStorage() });
@@ -25,12 +26,47 @@ router.get("/", getAllParking);
 router.get("/:id", getParkingById);
 
 //Create a new parking
-//TODO:: ADD VALIDATIONS
-router.post("/", upload.array("image"), postParking);
+router.post(
+  "/",
+  upload.fields([
+    {
+      name: "image",
+      maxCount: 10,
+    },
+    {
+      name: "body",
+    },
+  ]),
+  [
+    // ! Middlewares
+    body("image").custom((_, { req }) => validateImage(req)),
+    body("body").custom(validateParking),
+    validateFields,
+  ],
+  postParking
+);
 
 //Update a parking
-//TODO: ADD VALIDATIONS
-router.put("/:id", upload.array("image"), updateParking);
+// TODO: Later implement function to only update the field, without send all the data
+router.put(
+  "/:id",
+  upload.fields([
+    {
+      name: "image",
+      maxCount: 10,
+    },
+    {
+      name: "body",
+    },
+  ]),
+  [
+    // ! Middlewares
+    body("image").custom((_, { req }) => validateImage(req)),
+    body("body").custom(validateParking),
+    validateFields,
+  ],
+  updateParking
+);
 
 //Delete a parking
 router.delete("/:id", deleteParking);
