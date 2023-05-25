@@ -61,7 +61,7 @@ router.put(
   ]),
   [
     // ! Middlewares
-    body("image").custom((_, { req }) => validateImage(req)),
+    // body("image").custom((_, { req }) => validateImage(req)),
     body("body").custom(validateParking),
     validateFields,
   ],

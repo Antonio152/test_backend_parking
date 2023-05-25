@@ -17,6 +17,10 @@ export interface ParkingEntry {
 }
 
 export type NewParkingEntry = Omit<ParkingEntry, "id" | "images">;
+export type UpdateParkingEntry = Omit<ParkingEntry, "images">;
+export interface IUpdateParkingEntry extends UpdateParkingEntry {
+  imagesDelete?: string[];
+}
 
 export interface QueryParameters {
   price?: number[] | string[];
