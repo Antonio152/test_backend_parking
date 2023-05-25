@@ -9,7 +9,7 @@ import {
   deleteParking,
 } from "../controller/parkingController";
 import { validarJWT } from "../middlewares/validate-jwt";
-import { validatefields as validateFields } from "../middlewares/validateFields";
+import { validateFields as validateFields } from "../middlewares/validateFields";
 import { validateImage, validateParking } from "../helper/validateParking";
 const router = Router();
 // Configure multer to save uploaded files in memory

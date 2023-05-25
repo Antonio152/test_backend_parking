@@ -79,3 +79,89 @@ Content-Type: application/json
 Headers: x-token-app
 Where x-token-app is the token generated in the login
 ```
+
+### Parking
+__Note: All the petitions need a valid token.__
+<br/>
+| New parking space
+<br/>
+__Note: All the fields are required__
+```
+Route: /api/parking/new
+Type: POST
+Content-Type: multipart/form-data
+Headers: x-token-app
+Where x-token-app is the token generated in the login
+
+Elements: 
+body: {
+   "address":"some street",
+   "amenities":[
+      "Gas",
+      "Security",
+      "Cameras"
+   ],
+   "score":5,
+   "price":1200,
+   "type":"Private",
+   "description":"Lorem Ipsum is simply dummy text"
+}
+
+image: someFile.jpg
+```
+Example: 
+![New Párking](/assets/newParking.png)
+
+| Get all parkings
+```
+Route: /api/parking
+Type: GET
+Content-Type: application/json
+Headers: x-token-app
+Where x-token-app is the token generated in the login
+```
+| Get parking by id
+```
+Route: /api/parking/:id
+Type: GET
+Content-Type: application/json
+Headers: x-token-app
+Where x-token-app is the token generated in the login
+```
+| Update parking by id
+__Note: imagesDelete and image fields are optional__
+```
+Route: /api/parking/:id
+Type: PUT
+Content-Type: multipart/form-data
+Headers: x-token-app
+Where x-token-app is the token generated in the login
+
+
+Elements: 
+body: {
+   "address":"some street",
+   "amenities":[
+      "Gas",
+      "Security",
+      "Cameras"
+   ],
+   "score":5,
+   "price":1200,
+   "type":"Private",
+   "description":"Lorem Ipsum is simply dummy text.",
+   "imagesDelete":[
+      "5fGexk.png"
+   ]
+}
+image: someFile.jpg
+```
+Note: You can delete images adding the parameter __imagesDelete__ with the name of the image to delete this parameter is optional
+
+| Delete parking by id
+```
+Route: /api/parking/:id
+Type: DELETE
+Headers: x-token-app
+Where x-token-app is the token generated in the login
+```

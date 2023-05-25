@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { validatefields } from "../middlewares/validateFields";
+import { validateFields } from "../middlewares/validateFields";
 import {
   createUser,
   loginUser,
@@ -28,7 +28,7 @@ router.post(
       .not()
       .isEmpty()
       .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/),
-    validatefields,
+    validateFields,
   ],
   createUser
 );
@@ -45,7 +45,7 @@ router.post(
       .not()
       .isEmpty()
       .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/),
-    validatefields,
+    validateFields,
   ],
   loginUser
 );
