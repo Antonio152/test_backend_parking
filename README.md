@@ -29,6 +29,9 @@ src/
 //database, simulation of database using an array
 ├── database
     ├──database.ts
+//custom validation, check if the fields of the request are correct
+├── helpers
+    ├──validateParkings.ts
 //jwt, generate token for authentication
 ├── jwt
     ├──jwt.ts
@@ -42,9 +45,37 @@ src/
 ```
 
 ## Routes
+| Base path: http://localhost:5000
+### Auth
+| New user
+```
+Route: /api/auth/new
+Type: POST
+Content-Type: application/json
+Demo JSON:
+{
+	"name":"Pruebas",
+	"email":"pruebas@mail.com",
+	"password":"x8Gd7B6F"
+}
 
 ```
-POST /auth/register
-POST /auth/login
-POST /parking
+| Login
+```
+Route: /api/auth/login
+Type: POST
+Content-Type: application/json
+Demo JSON:
+{
+	"email":"pruebas@mail.com",
+	"password":"x8Gd7B6F"
+}
+```
+| Renew token
+```
+Route: /api/auth/renew
+Type: GET
+Content-Type: application/json
+Headers: x-token-app
+Where x-token-app is the token generated in the login
 ```

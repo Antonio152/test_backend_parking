@@ -26,7 +26,8 @@ export const createUser = async (
     }
 
     NewUser = {
-      id: Math.max(...dataUsers.map((u) => u.id)) + 1,
+      id:
+        dataUsers.length > 0 ? Math.max(...dataUsers.map((u) => u.id)) + 1 : 1,
       ...req.body,
     };
 
